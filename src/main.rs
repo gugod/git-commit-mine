@@ -232,7 +232,7 @@ impl Nugget {
     }
 
     fn string(&self, prefix: &String) -> String {
-        format!("{} zeros: '{} {}'", self.zeros, prefix, self.nonce)
+        format!("{} {}", prefix, self.nonce)
     }
 }
 
@@ -310,7 +310,6 @@ fn main() {
     for b in receiver {
         if best.cmp(&b) == Ordering::Less {
             best = b;
-            println!("{}", best.string(&opt.prefix));
         }
 
         if best.zeros >= opt.zeros || start.elapsed() > timeout {
@@ -318,5 +317,5 @@ fn main() {
         }
     }
 
-    println!("Best result: {}", best.string(&opt.prefix));
+    println!("{}", best.string(&opt.prefix));
 }
